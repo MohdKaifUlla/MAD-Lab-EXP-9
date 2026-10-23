@@ -16,9 +16,9 @@
 
 This experiment demonstrates data persistence in Android using **SharedPreferences** and **SQLite Database** (`SQLiteOpenHelper`) with Kotlin and XML.
 
-The application provides an interactive interface for managing student records. It allows storing and retrieving student preferences (Student Name and USN) using SharedPreferences and performing CRUD (Create, Read, Delete) operations on structured student records stored in a local SQLite database.
+The application provides a clean and interactive interface for managing student records. It allows storing and retrieving lightweight user preferences (Student Name and USN) using **SharedPreferences**, as well as performing full CRUD (Create, Read, Delete) operations on structured student records stored in a local **SQLite Database**.
 
-Users can enter student details, save and load preferences, insert new student records, view all stored records, delete specific records using USN, and clear input/output fields.
+Users can input student details, save and load preferences, insert new student records into the database, view all stored records, delete specific records using USN, and clear input/output fields.
 
 ### Scenario
 
@@ -48,129 +48,158 @@ Prefs           Prefs Student Records Student
 
 ### SharedPreferences and SQLite Database
 
-Android provides multiple data storage options depending on application needs. SharedPreferences is suitable for simple key-value pairs, while SQLite provides a lightweight relational database for managing structured data locally.
+Android provides multiple data storage options depending on application needs. **SharedPreferences** is ideal for saving simple key-value pairs, while **SQLite Database** provides a lightweight, embedded relational database for managing structured data locally.
 
-The application uses the following concepts:
+This application uses the following concepts:
 
-- **SharedPreferences** – Stores key-value pairs persistently across application launches.
-- **SQLite Database (`SQLiteOpenHelper`)** – Creates, manages, and executes SQL operations such as CREATE TABLE, INSERT, QUERY, and DELETE.
-- **ContentValues & Cursor** – Used to construct database rows and retrieve query results.
-- **Toast Messages** – Provides feedback to users after performing operations.
-- **ScrollView & LinearLayout** – Creates a structured, scrollable user interface.
-- **Kotlin** – Implements event handling, database operations, and preference management.
-- **XML** – Defines the user interface components and layouts.
-- **Android Studio** – Used for application development, building, and testing.
+* **SharedPreferences** – Stores key-value pairs persistently across application launches.
+* **SQLite Database (`SQLiteOpenHelper`)** – Creates, manages, and executes SQL operations (`CREATE TABLE`, `INSERT`, `QUERY`, `DELETE`) on local database tables.
+* **ContentValues & Cursor** – Standard Android API classes used to construct database rows and iterate over query result sets.
+* **Toast Messages** – Provides immediate visual feedback to the user upon performing data actions.
+* **ScrollView & LinearLayout** – Constructs a structured, user-friendly layout that scales well across screen sizes.
+* **Kotlin** – Implements event handling, database queries, and preference management logic.
+* **XML** – Defines the user interface components, input fields, buttons, and layout hierarchy.
+* **Android Studio** – Used for application development, building, and testing.
 
 ---
 
 ## 🚀 Features
 
-- 🎓 Student Data Management Interface
-- 👤 Input fields for Student Name and USN
-- 💾 Save Student Details to SharedPreferences
-- 📂 Load Saved Preferences from SharedPreferences
-- ➕ Insert Student Records into SQLite Database
-- 📜 View All Student Records
-- 🗑️ Delete Specific Student Records by USN
-- 🧹 Clear Input Fields and Output Area
-- 💬 Toast Messages for User Operations
-- 📱 Scrollable User Interface
-- 🏷️ Footer displaying student details
+* 🎓 Student Data Management Interface
+* 👤 Input fields for Student Name and USN
+* 💾 Save Student Details to SharedPreferences
+* 📂 Load Saved Preferences from SharedPreferences
+* ➕ Insert Student Records into SQLite Database
+* 📜 View All Student Records from SQLite Database
+* 🗑️ Delete Specific Student Records by USN
+* 🧹 Clear Input Fields and Output Area
+* 💬 Status messages via Toasts for user operations
+* 📱 Scrollable user interface layout
+* 🏷️ Footer displaying student details (Name & USN)
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
 ```text
 app/
+│
 ├── manifests/
 │   └── AndroidManifest.xml
+│
 ├── java/
 │   └── com/
 │       └── project/
 │           └── exp9/
 │               ├── MainActivity.kt
 │               └── StudentDatabaseHelper.kt
+│
 ├── res/
 │   ├── layout/
 │   │   └── activity_main.xml
+│   │
 │   └── values/
 │       ├── colors.xml
 │       ├── strings.xml
 │       └── themes.xml
+│
 └── Gradle Scripts
 ```
 
 ---
 
-## 🎨 User Interface
+# 🎨 User Interface
 
-The application contains:
+The application features a clean, organized user interface containing:
 
-- Experiment header: Student Data Manager
-- Input fields for Student Name and USN
-- SharedPreferences section with Save Preferences and Load Preferences buttons
-- SQLite Database section with Insert Student, View All Records, Delete by USN, and Clear Fields buttons
-- Output display area showing operation results and database records
-- Footer displaying author details (**Mohammed Kaif Ulla | USN: 25MCAR0226**)
+* Title and Experiment Header (`Student Data Manager`)
+* Input fields for **Student Name** and **USN**
+* **SharedPreferences Section** with buttons to:
+  * Save Preferences
+  * Load Preferences
+* **SQLite Database Section** with buttons to:
+  * Insert Student
+  * View All Records
+  * Delete by USN
+  * Clear Fields
+* **Output Display Area** (`TextView`) showing operation results and database records
+* Footer displaying author details (**Mohammed Kaif Ulla | USN: 25MCAR0226**)
 
 ---
 
-## 🧪 Test Cases
+# 🧪 Test Cases
 
-### Test Case 1 – Save and Load SharedPreferences
+## Test Case 1 – Save and Load SharedPreferences
 
-**Objective:** Verify that student details can be saved to and loaded from SharedPreferences.
+### Objective
 
-**Input:**
+To verify that student details (Name and USN) can be saved to and loaded from SharedPreferences.
+
+### Input
+
 1. Enter Name: `Mohammed Kaif Ulla` and USN: `25MCAR0226`.
 2. Tap **Save Preferences**.
-3. Clear the fields or relaunch the application, then tap **Load Preferences**.
+3. Clear fields or relaunch app, then tap **Load Preferences**.
 
-**Expected Result:** The student details should be saved in key-value format and loaded back into the input fields and output display.
+### Expected Result
 
-**Actual Result:** The preferences can be saved and retrieved from SharedPreferences.
+The student details should be saved in key-value format and loaded back into the input fields and output display area upon tapping Load Preferences.
 
-**Status:** ✅ Passed
+### Actual Result
+
+The preferences were successfully saved and retrieved from SharedPreferences.
+
+### Status
+
+✅ **Passed**
 
 ---
 
-### Test Case 2 – Insert and View Records in SQLite
+## Test Case 2 – Insert and View Records in SQLite Database
 
-**Objective:** Verify that student records can be inserted into the SQLite database and retrieved.
+### Objective
 
-**Input:**
-1. Enter student details.
+To verify that student records can be inserted into the SQLite database and retrieved using View All Records.
+
+### Input
+
+1. Enter Name and USN in the input fields.
 2. Tap **Insert Student**.
 3. Tap **View All Records**.
 
-**Expected Result:** The student record should be inserted into the database, and all stored records should be displayed with their auto-generated IDs.
+### Expected Result
 
-**Actual Result:** Records can be inserted and displayed in the output area.
+The student record should be inserted into the database table, and tapping View All Records should output all stored student records with auto-generated IDs.
 
-**Status:** ✅ Passed
+### Actual Result
+
+Records were inserted into the SQLite database and displayed correctly in the output area.
+
+### Status
+
+✅ **Passed**
 
 ---
 
-### Test Case 3 – Delete Record by USN and Clear Fields
+## Test Case 3 – Delete Record by USN and Clear Fields
 
-**Objective:** Verify that a specific record can be deleted using USN and that input/output fields can be cleared.
+### Objective
 
-**Input:**
-1. Enter a USN and tap **Delete by USN**.
+To verify deleting a specific record from the SQLite database using USN and clearing input/output fields.
+
+### Input
+
+1. Enter USN in the USN field and tap **Delete by USN**.
 2. Tap **Clear Fields**.
 
-**Expected Result:** The matching record should be removed from the SQLite database, and the input fields and output area should be cleared.
+### Expected Result
 
-**Actual Result:** The record can be deleted, and fields can be cleared as expected.
+The record associated with the given USN should be removed from the SQLite database. Tapping Clear Fields should reset the input fields and output TextView.
 
-**Status:** ✅ Passed
+### Actual Result
 
----
+Record deletion succeeded and fields were cleared as expected.
 
-## 👨‍🎓 Student Details
+### Status
 
-**Name:** Mohammed Kaif Ulla  
-**USN:** 25MCAR0226
-
-**Experiment:** 9 – Data Persistence using SharedPreferences and SQLite
+✅ **Passed**
